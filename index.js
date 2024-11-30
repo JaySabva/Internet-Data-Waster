@@ -4,7 +4,7 @@ let abortController = new AbortController();
 
 async function fetchImage() {
     try {
-        console.log('Fetching image...');
+        // console.log('Fetching image...');
         const url = "https://picsum.photos/5000/5000";
         const res = await fetch(url, {
             signal: abortController.signal
@@ -16,17 +16,17 @@ async function fetchImage() {
         const dataInMB = imageSize * 0.000001;
         dataWasted += dataInMB;
 
-        console.log('Image fetched!');
-        console.log('Data wasted:', dataWasted.toFixed(2), 'MB');
+        // console.log('Image fetched!');
+        // console.log('Data wasted:', dataWasted.toFixed(2), 'MB');
 
         document.getElementById('dataWasted').innerText = dataWasted.toFixed(2) + ' MB';
 
         return dataWasted;
     } catch (error) {
         if (error.name === 'AbortError') {
-            console.log('Fetch aborted');
+            // console.log('Fetch aborted');
         } else {
-            console.error('Error fetching image:', error);
+            // console.error('Error fetching image:', error);
         }
         return false;
     }
@@ -57,7 +57,7 @@ async function run() {
         dataWasted = 0;
         stopFetching = false;
         document.getElementById('dataWasted').innerText = '0 MB';
-        console.log('Wasting data...');
+        // console.log('Wasting data...');
         document.querySelector("button").innerText = 'Stop';
         abortController = new AbortController(); // Create a new AbortController for the next run
         await startWasting();
